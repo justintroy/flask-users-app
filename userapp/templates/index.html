@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script
+            defer
+            src="https://pro.fontawesome.com/releases/v5.10.0/js/all.js"
+            integrity="sha384-G/ZR3ntz68JZrH4pfPJyRbjW+c0+ojii5f+GYiYwldYU69A+Ejat6yIfLSxljXxD"
+            crossorigin="anonymous"
+        ></script>
+        <link rel="preload" href="{{url_for('static', filename='styles.css')}}" as="style" />
+        <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}" media="print" onload="this.media='all'" />
+        <title>User</title>
+    </head>
+    <body>
+        <div class="container">
+            <h3 class="page-header">Users</h3>
+            <table class="users-table">
+                <thead class="users-table--header">
+                    <tr>
+                        <th>ID</th>
+                        <th>Username</th>
+                        <th>Name</th>
+                        <th>Password</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody class="users-table--body">
+                    {% for user in users %}
+                    <tr>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.password }}</td>
+                        <td>
+                            <a href="/edit/{{ user.id }}" rel="ajax:modal" value="{{ user.id }}"
+                                ><button class="edit-button"><i class="far fa-edit"></i></button
+                            ></a>
+                        </td>
+                        <td>
+                            <a href="/delete/{{ user.id }}" rel="ajax:modal" value="{{ user.id }}"
+                                ><button class="delete-button" value="{{ user.id }}"><i class="far fa-trash"></i></button>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot class="users-table--footer">
+                    <tr>
+                        <form id="form" action="/" method="post">
+                            <td></td>
+                            <td><input type="text" name="username" placeholder="Username" required /></td>
+                            <td><input type="text" name="name" placeholder="Name" required /></td>
+                            <td><input type="password" name="password" placeholder="Password" required /></td>
+                            <td>
+                                <button type="reset" id="reset" class="reset-button"><i class="far fa-sync-alt"></i></button>
+                            </td>
+                            <td>
+                                <button type="submit" id="submit" class="enter-new-button"><i class="far fa-save"></i></button>
+                            </td>
+                        </form>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="modal"></div>
+    </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+
+    <script src="{{url_for('static', filename='script.js')}}"></script>
+</html>
