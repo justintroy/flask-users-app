@@ -1,4 +1,4 @@
 # flask-users-app
 
 Demo:
-![Demo](https://i.imgur.com/0iwgx3v.mp4)
+![Demo](https://media.giphy.com/media/EDZFLwdGp9tcyj7gJ8/giphy.gif)
